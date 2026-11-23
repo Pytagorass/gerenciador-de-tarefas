@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Minhas tarefas</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+<header class="cabecalho py-3">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <a class="text-white text-decoration-none fs-4 fw-bold"
+           th:href="@{/tarefas}">
+            Gerenciador de Tarefas
+        </a>
+        <form th:action="@{/logout}" method="post" class="m-0">
+            <button class="btn btn-principal" type="submit">Sair</button>
+        </form>
+    </div>
+</header>
+
+<main class="container py-5">
+
+    <div class="d-flex flex-wrap justify-content-between
+                align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="h2 fw-bold">Minhas tarefas</h1>
+
+            <p class="text-secondary mb-0">
+                Consulte suas atividades e acompanhe os prazos.
+            </p>
+        </div>
+
+        <a class="btn btn-principal" th:href="@{/tarefas/nova}">
+            + Nova tarefa
+        </a>
+    </div>
+
+    <div class="alert alert-success"
+         role="status"
+         th:if="${mensagem != null}"
+         th:text="${mensagem}">
+    </div>
+
+    <section class="card shadow-sm" aria-label="Consulta de tarefas">
+        <div class="card-body p-4">
+
+            <form th:action="@{/tarefas}"
+                  method="get"
+                  class="row g-3 align-items-end">
+
+                <div class="col-md-8">
+                    <label for="nome" class="form-label">
+                        Pesquisar pelo nome
+                    </label>
+
+                    <input id="nome"
+                           name="nome"
+                           type="search"
+                           class="form-control"
+                           placeholder="Digite parte do nome da tarefa"
+                           th:value="${nome}">
+                </div>
+
+                <div class="col-md-4 d-flex gap-2">
+                    <button class="btn btn-principal" type="submit">
+                        Pesquisar
+                    </button>
+
+                    <a class="btn btn-secundario"
+                       th:href="@{/tarefas}">
+                        Limpar
+                    </a>
+                </div>
+            </form>
+
+            <p class="text-secondary mt-4"
+               th:text="|Registros encontrados: ${#lists.size(tarefas)}|">
+            </p>
+
+            <div th:if="${#lists.isEmpty(tarefas)}"
+                 class="text-center py-4">
+
+                <p class="text-secondary">
+                    Nenhuma tarefa encontrada.
+                    Cadastre uma tarefa ou altere a pesquisa.
+                </p>
+
+                <a class="btn btn-principal"
+                   th:href="@{/tarefas/nova}">
+                    Cadastrar tarefa
+                </a>
+            </div>
+
+            <div class="table-responsive"
+                 th:unless="${#lists.isEmpty(tarefas)}">
+
+                <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Data limite</th>
+                        <th scope="col">Prioridade</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="tarefa : ${tarefas}">
+                        <td class="nome-tarefa fw-semibold"
+                            th:text="${tarefa.nome}">
+                        </td>
+
+                        <td class="descricao-tarefa"
+                            th:text="${tarefa.descricao}">
+                        </td>
+
+                        <td class="text-nowrap"
+                            th:text="${#temporals.format(
+                                tarefa.dataLimite, 'dd/MM/yyyy')}">
+                        </td>
+
+                        <td>
+                            <span class="badge"
+                                  th:classappend="${'prioridade-' +
+                                      tarefa.prioridade.name()}"
+                                  th:text="${tarefa.prioridade.descricao}">
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="badge"
+                                  th:classappend="${'status-' +
+                                      tarefa.status.name()}"
+                                  th:text="${tarefa.status.descricao}">
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,118 @@
+:root {
+    --azul: #0d47a1;
+    --laranja: #f57c00;
+}
+
+body {
+    background-color: #f3f6fb;
+    color: #212529;
+}
+
+.cabecalho {
+    background-color: var(--azul);
+}
+
+.btn-principal {
+    background-color: var(--laranja);
+    border-color: var(--laranja);
+    color: #212529;
+    font-weight: 600;
+}
+
+.btn-principal:hover,
+.btn-principal:active {
+    background-color: #e65100;
+    border-color: #e65100;
+    color: #fff;
+}
+
+.btn-secundario {
+    background-color: #fff;
+    border-color: var(--azul);
+    color: var(--azul);
+}
+
+.btn-secundario:hover {
+    background-color: var(--azul);
+    border-color: var(--azul);
+    color: #fff;
+}
+
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--azul);
+    outline-offset: 3px;
+}
+
+.cabecalho a:focus-visible {
+    outline-color: #fff;
+}
+
+.login-pagina {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.login-cartao {
+    width: 100%;
+    max-width: 420px;
+    background-color: #fff;
+}
+
+.login-titulo {
+    color: var(--azul);
+}
+
+.card {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+}
+
+.descricao-tarefa {
+    min-width: 200px;
+    max-width: 350px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.nome-tarefa {
+    min-width: 160px;
+    overflow-wrap: anywhere;
+}
+
+.badge {
+    white-space: nowrap;
+}
+
+.prioridade-ALTA {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.prioridade-MEDIA {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.prioridade-BAIXA,
+.status-CONCLUIDA {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-A_FAZER {
+    background-color: #e2e8f0;
+    color: #334155;
+}
+
+.status-EM_ANDAMENTO {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
