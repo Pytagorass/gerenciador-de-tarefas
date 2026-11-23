@@ -1,6 +1,7 @@
 package br.edu.ifmt.tarefas.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -48,6 +49,9 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private StatusTarefa status = StatusTarefa.A_FAZER;
+
+    @Column(name = "data_finalizacao")
+    private LocalDateTime dataFinalizacao;
 
     public Tarefa() {
     }
@@ -98,5 +102,13 @@ public class Tarefa {
 
     public void setStatus(StatusTarefa status) {
         this.status = status;
+    }
+
+    public LocalDateTime getDataFinalizacao() {
+        return dataFinalizacao;
+    }
+
+    public void setDataFinalizacao(LocalDateTime dataFinalizacao) {
+        this.dataFinalizacao = dataFinalizacao;
     }
 }

@@ -110,6 +110,8 @@
                         <th scope="col">Data limite</th>
                         <th scope="col">Prioridade</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Finalização</th>
+                        <th scope="col">Ações</th>
                     </tr>
                     </thead>
 
@@ -142,6 +144,20 @@
                                       tarefa.status.name()}"
                                   th:text="${tarefa.status.descricao}">
                             </span>
+                        </td>
+
+                        <td class="text-nowrap"
+                            th:text="${tarefa.dataFinalizacao != null ?
+                                #temporals.format(tarefa.dataFinalizacao, 'dd/MM/yyyy HH:mm') : '—'}">
+                            —
+                        </td>
+
+                        <td>
+                            <a class="btn btn-sm btn-secundario"
+                               th:href="@{/tarefas/{id}/editar(id=${tarefa.id})}"
+                               th:aria-label="|Editar tarefa ${tarefa.nome}|">
+                                Editar
+                            </a>
                         </td>
                     </tr>
                     </tbody>
